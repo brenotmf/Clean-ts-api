@@ -73,14 +73,16 @@ describe('DbAddAccount Usecase', () => {
     const accountData = {
       name: 'valid_name',
       email: 'valid_email',
-      password: 'valid_password'
+      password: 'valid_password',
+      passwordConfirmation: 'hashed_password'
 
     }
     await sut.add(accountData)
     expect(addSpy).toHaveBeenCalledWith({
       name: 'valid_name',
       email: 'valid_email',
-      password: 'hashed_password'
+      password: 'hashed_password',
+      passwordConfirmation: 'hashed_password'
     })
   })
 
@@ -102,7 +104,8 @@ describe('DbAddAccount Usecase', () => {
     const accountData = {
       name: 'valid_name',
       email: 'valid_email',
-      password: 'valid_password'
+      password: 'valid_password',
+      passwordConfirmation: 'valid_password'
     }
     const account = await sut.add(accountData)
     expect(account).toEqual({
